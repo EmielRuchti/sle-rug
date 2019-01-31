@@ -19,9 +19,20 @@ alias UseDef = rel[loc use, loc def];
 UseDef resolve(AForm f) = uses(f) o defs(f);
 
 Use uses(AForm f) {
-  return {}; 
+  Use u = {};
+  for(/e:ref(str x) := f) {
+   	 u += {<e.src, x>};
+  }
+  return u; 
 }
 
 Def defs(AForm f) {
-  return {}; 
+  Def d = {};
+  for(/q:question( _,str x,_) := f) {
+  	d += {<x,q.src>};
+  } 
+  for(/q:question( _,str x,_,_) := f) {
+  	d += {<x,q.src>};
+  }
+  return d;
 }
