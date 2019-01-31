@@ -12,4 +12,3 @@ import Transform;
 
 Form PT = parse(#Form,|project://QL/examples/tax.myql|);
 AForm AT = cst2ast(PT);
-
